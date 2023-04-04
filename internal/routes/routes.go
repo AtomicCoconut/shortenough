@@ -1,11 +1,22 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
-func CreateShort(c *gin.Context) {
+	"github.com/gin-gonic/gin"
+)
 
+func CreateShortRoute(c *gin.Context) {
+	url := c.Query("url")
+	if url == "" {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Please provide an url as a query parameter!",
+		})
+		return
+	}
 }
 
-func ServeShort(c *gin.Context) {
+func ServeShortRoute(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Serve"})
 
 }
