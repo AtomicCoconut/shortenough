@@ -3,11 +3,14 @@ package internal
 import (
 	"net/http"
 
+	"github.com/atomiccoconut/shortenough/internal/database"
 	"github.com/atomiccoconut/shortenough/internal/routes"
 	"github.com/gin-gonic/gin"
 )
 
 func StartServer() {
+	database.Connect()
+
 	router := gin.Default()
 
 	router.LoadHTMLFiles("public/index.html")
